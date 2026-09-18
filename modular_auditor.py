@@ -50,6 +50,12 @@ while True:
         failed_entries += 1
         continue
 
+    # Check if delivery would exceed 500 units
+    if inventory + stock > 500:
+        print("ALERT: Inventory cannot exceed 500 units!")
+        failed_entries += 1
+        continue
+
     # Process valid delivery
     inventory = process_delivery(inventory, stock)
 
