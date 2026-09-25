@@ -1,0 +1,25 @@
+{
+    "inventory": 91,
+    "transaction_history": [
+        {
+            "order_id": 1001,
+            "product_name": "Laptop",
+            "quantity": 45
+        },
+        {
+            "order_id": 1002,
+            "product_name": "Monitor ",
+            "quantity": 14
+        },
+        {
+            "order_id": 1003,
+            "product_name": "Keyboard",
+            "quantity": 30
+        },
+        {
+            "order_id": 1004,
+            "product_name": "aespa ",
+            "quantity": 2
+        }
+    ]
+}
