@@ -5,11 +5,11 @@ class Product:
         self.__price = price
         self.__stock = stock
 
+    def display_current_stock(self):
+        print(f'Product Name: {self.__name}')
+        print(f'Current stock: {self.__stock}')
+
     def update_stock(self, quantity):
-        if quantity < 0: 
-            print("Error: Stock quantity cannot be negative.")
-            return 
-        
         self.__stock = quantity
 
     def display_information(self):
