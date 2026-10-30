@@ -6,4 +6,4 @@ COPY main.py .
 COPY product.py .
 COPY inventory.py .
 
-CMD ["python", "inventory_manager.py"]
+CMD ["python", "main.py"]
