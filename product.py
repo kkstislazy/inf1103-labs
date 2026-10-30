@@ -23,3 +23,13 @@ class Product:
     def get_product_id(self):
         return self.__product_id
 
+    def to_dict(self):
+        product_dict = {
+            "id": self.__product_id,
+            "name": self.__name,
+            "price": self.__price,
+            "stock": self.__stock
+        }
+
+        return product_dict
+

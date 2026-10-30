@@ -32,4 +32,7 @@ class Inventory:
             for p in self.__products:
                 p.display_information()
 
+    def get_products(self):
+        return self.__products
+
             
