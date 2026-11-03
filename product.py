@@ -1,4 +1,5 @@
 from abc import ABC, abstractmethod
+from can_be_shipped import CanBeShipped
 
 class Product(ABC): 
     def __init__(self, product_id, name, price, stock):
@@ -43,7 +44,7 @@ class Product(ABC):
     def get_fulfilment_info(self):
         pass
 
-class PhysicalProduct(Product): 
+class PhysicalProduct(Product, CanBeShipped): 
     def __init__(self, product_id, name, price, stock, weight):
         super().__init__(product_id, name, price, stock)
         self.__weight = weight
@@ -53,6 +54,11 @@ class PhysicalProduct(Product):
 
     def get_fulfilment_info(self):
         return "This product requires physical shipping."
+
+    def calculate_shipping_cost(self):
+        shipping_cost = self.__weight * 5
+        return shipping_cost
+
         
 class DigitalProduct(Product):
     def __init__(self, product_id, name, price, stock, download_size):
