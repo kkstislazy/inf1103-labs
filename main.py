@@ -1,7 +1,7 @@
 import json
 import os
 
-from product import Product
+from product import Product, PhysicalProduct, DigitalProduct
 from inventory import Inventory
 
 FILE_NAME = "inventory.json"
@@ -14,7 +14,13 @@ def load_inventory():
                 load = json.load(file)
 
                 for p in load:
-                    product = Product(p["id"], p["name"], p["price"], p["stock"])
+                    if p["type"] == "physical":
+                        product = PhysicalProduct(p["id"], p["name"], p["price"], p["stock"], p["weight"])
+                    elif p["type"] == "digital":
+                        product = DigitalProduct(p["id"], p["name"], p["price"], p["stock"], p["download_size"])
+                    else:
+                        print(f'Unknown product type: {p["type"]}. Skipping product.')
+                        continue
                     inventory.add_product(product)
 
                 print("inventory.json file found.")
@@ -65,17 +71,54 @@ def add_product(inventory):
     
     try: 
         product_price = float(input("\nPrice: "))
-        product_stock = int(input("\nStock quantity: "))
     
-        if product_price < 0 or product_stock < 0:
-            print("Error: Price and stock cannot be negative.")
+        if product_price < 0:
+            print("Error: Price  cannot be negative.")
             return
+        
+        product_stock = int(input("\nStock quantity: "))
+
+        if product_stock < 0:
+            print("Error: Stock cannot be negative.")
+            return
+
     except ValueError:
         print("Error: Please enter a valid price and stock quantity.")
         return
-    
-    product = Product(product_id, product_name, product_price, product_stock)
 
+    product_type = input("\nProduct type: ").strip().lower()
+    if product_type == "physical": 
+        try: 
+            product_weight = float(input("\nProduct weight (kg): "))
+
+            if product_weight < 0:
+                print("Product weight cannot be negative")
+                return
+
+        except ValueError: 
+            print("Error: Please enter a valid weight.")
+            return
+
+        product = PhysicalProduct(product_id, product_name, product_price, product_stock, product_weight)
+    
+    elif product_type == "digital":
+        try: 
+            product_download_size = float(input("\nProduct download size (MB): "))
+
+            if product_download_size < 0: 
+                print("Product download size cannot be negative.")
+                return
+
+        except ValueError: 
+            print("Error: Please enter a valid download size.")
+            return
+        
+        product = DigitalProduct(product_id, product_name, product_price, product_stock, product_download_size)
+    
+    else: 
+        print("Error: Please enter a valid product type 'physical' or 'digital'.")
+        return
+    
     if inventory.add_product(product):
         print("Product added successfully.")
 
