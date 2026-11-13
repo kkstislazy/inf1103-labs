@@ -1,12 +1,14 @@
 from abc import ABC, abstractmethod
 from can_be_shipped import CanBeShipped
+from supplier import Supplier
 
 class Product(ABC): 
-    def __init__(self, product_id, name, price, stock):
+    def __init__(self, product_id:str, name:str, price: float, stock: int, supplier: Supplier):
         self.__product_id = product_id
         self.__name = name
         self.__price = price
         self.__stock = stock
+        self.__supplier: Supplier = supplier
 
     def display_current_stock(self):
         print(f'Product Name: {self.__name}')
@@ -44,9 +46,12 @@ class Product(ABC):
     def get_fulfilment_info(self):
         pass
 
+    def display_supplier_information(self):
+        self.__supplier.display_information()
+
 class PhysicalProduct(Product, CanBeShipped): 
-    def __init__(self, product_id, name, price, stock, weight):
-        super().__init__(product_id, name, price, stock)
+    def __init__(self, product_id, name, price, stock, supplier: Supplier, weight):
+        super().__init__(product_id, name, price, stock, supplier)
         self.__weight = weight
 
     def display_information(self):
@@ -69,8 +74,8 @@ class PhysicalProduct(Product, CanBeShipped):
 
         
 class DigitalProduct(Product):
-    def __init__(self, product_id, name, price, stock, download_size):
-        super().__init__(product_id, name, price, stock)
+    def __init__(self, product_id, name, price, stock, supplier: Supplier, download_size):
+        super().__init__(product_id, name, price, stock, supplier)
         self.__download_size = download_size
 
     def display_information(self):
