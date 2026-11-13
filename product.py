@@ -49,6 +49,9 @@ class Product(ABC):
     def display_supplier_information(self):
         self.__supplier.display_information()
 
+    def get_price(self):
+        return self.__price
+
 class PhysicalProduct(Product, CanBeShipped): 
     def __init__(self, product_id, name, price, stock, supplier: Supplier, weight):
         super().__init__(product_id, name, price, stock, supplier)
