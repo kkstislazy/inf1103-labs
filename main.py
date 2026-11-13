@@ -126,7 +126,7 @@ def add_product(inventory):
 def update_stock(inventory):
     print("\nUpdate Stock")
     product_id = input("\nEnter Product ID: ").strip().lower()
-    product = inventory.search_product(product_id)
+    product = inventory.find_product(product_id)
 
     if product:
         print("Product found:")
@@ -149,10 +149,10 @@ def update_stock(inventory):
     else: 
         print("Product not found.")
 
-def search_product(inventory):
+def find_product(inventory):
     print("\nSearch Product")
     product_id = input("Enter product ID: ").strip().lower()
-    product = inventory.search_product(product_id)
+    product = inventory.find_product(product_id)
 
     if product:
         product.display_information()
@@ -176,7 +176,7 @@ def main():
             update_stock(inventory)
 
         elif option == "4":
-            search_product(inventory)
+            find_product(inventory)
 
         elif option == "5":
             print("Saving inventory...")
