@@ -1,10 +1,10 @@
 class Supplier:
-    def __init__(self, supplier_id: str, name: str, email: str):
+    def __init__(self, supplier_id: str, name: str, email: str) -> None:
         self.__supplier_id = supplier_id
         self.__supplier_name = name 
         self.__supplier_email = email
 
-    def display_information(self):
+    def display_information(self) -> None:
         print("Supplier Information")
         print("-"*40)
         print(f'Supplier ID: {self.__supplier_id}')
