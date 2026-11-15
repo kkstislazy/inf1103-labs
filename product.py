@@ -6,7 +6,11 @@ class Product(ABC):
     def __init__(self, product_id:str, name:str, price: float, stock: int, supplier: Supplier) -> None:
         self.__product_id = product_id
         self.__name = name
+        if price <= 0:
+            raise ValueError("Price has to be greater than 0.")
         self.__price = price
+        if stock < 0: 
+            raise ValueError("Stock has to be greater than 0.")
         self.__stock = stock
         self.__supplier: Supplier = supplier
 
@@ -37,7 +41,8 @@ class Product(ABC):
             "id": self.__product_id,
             "name": self.__name,
             "price": self.__price,
-            "stock": self.__stock
+            "stock": self.__stock,
+            "supplier": self.__supplier.to_dict()
         }
 
         return product_dict

@@ -3,10 +3,12 @@ from product import Product
 class OrderLine: 
     def __init__(self, product: Product, quantity: int) -> None:
         self.__product = product
+        if quantity <=0: 
+            raise ValueError("Order line quantity must be greater than 0.")
         self.__quantity = quantity
-
     def calculate_subtotal(self) -> float:
         price = self.__product.get_price()
         subtotal: float = price * self.__quantity
 
         return subtotal
+    
