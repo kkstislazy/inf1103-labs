@@ -1,13 +1,15 @@
 import json
 import os
+import csv
 
 from product import Product, PhysicalProduct, DigitalProduct
 from inventory import Inventory
 from supplier import Supplier
 from order import Order
-from tests.lab8_test import run_lab_tests
 from product_factory import ProductFactory
 
+from tests.lab8_test import run_lab8_tests
+from tests.lab9_test import run_lab9_tests
 
 FILE_NAME = "inventory.json"
 
@@ -195,18 +197,6 @@ def find_product(inventory):
     else: 
         print("Product not found.")
 
-def show_product_details(product: Product) -> None:
-    product.display_information()
-    print(product.get_fulfilment_info())
-
-
-def demonstrate_polymorphism(products: list[Product]) -> None:
-    print("\nPOLYMORPHISM TEST")
-    print("=" * 40)
-
-    for product in products:
-        product.display_information()
-        print(product.get_fulfilment_info())
 
 def main():
     inventory = load_inventory()
@@ -256,5 +246,6 @@ def main():
 
 
 if __name__ == "__main__":
-    main()       
-    # run_lab_tests()
+    # main()       
+    # run_lab8_tests()
+    run_lab9_tests()

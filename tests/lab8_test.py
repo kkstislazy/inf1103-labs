@@ -1,9 +1,22 @@
-from product import Product
+from product import Product, PhysicalProduct, DigitalProduct
 from supplier import Supplier 
 from inventory import Inventory
 from order import Order
 
-def run_lab_tests() -> None:
+def show_product_details(product: Product) -> None:
+    product.display_information()
+    print(product.get_fulfilment_info())
+
+
+def demonstrate_polymorphism(products: list[Product]) -> None:
+    print("\nPOLYMORPHISM TEST")
+    print("=" * 40)
+
+    for product in products:
+        product.display_information()
+        print(product.get_fulfilment_info())
+
+def run_lab8_tests() -> None:
     print("\nLAB 8 RELATIONSHIP AND LSP TESTS")
 
     # 1. Association: Supplier and Product

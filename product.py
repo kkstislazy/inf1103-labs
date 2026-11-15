@@ -6,12 +6,19 @@ class Product(ABC):
     def __init__(self, product_id:str, name:str, price: float, stock: int, supplier: Supplier) -> None:
         self.__product_id = product_id
         self.__name = name
+
         if price <= 0:
             raise ValueError("Price has to be greater than 0.")
+        if not isinstance(price, (int, float)):
+            raise TypeError("Price must be a number.")
         self.__price = price
+
         if stock < 0: 
             raise ValueError("Stock has to be greater than 0.")
+        if not isinstance(stock, int):
+            raise TypeError("Stock must be a whole number.")
         self.__stock = stock
+        
         self.__supplier: Supplier = supplier
 
     def display_current_stock(self) -> None:
